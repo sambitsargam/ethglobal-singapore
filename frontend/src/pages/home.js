@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Label } from '@windmill/react-ui';
-import { IDKitWidget } from '@worldcoin/idkit';
+import { IDKitWidget, VerificationLevel } from '@worldcoin/idkit'
 
 // MetaMask connection handler
 const connectMetaMask = async () => {
@@ -178,12 +178,11 @@ function Home() {
                   </Label>
 
                   <IDKitWidget
-                    app_id="app_staging_add54a8fabc8467293ab274bfee34aa4"
-                    action="vote_1"
-                    signal="user_value"
+                    app_id="app_GBkZ1KlVUdFTjeMXKlVUdFT"
+                    action="unique_person"
                     onSuccess={enableButton} // Call enableButton on success
-                    credential_types={['orb', 'phone']}
-                    enableTelemetry
+                    verification_level={VerificationLevel.Device} // or "device"
+
                   >
                     {({ open }) => <Button onClick={open} className="mt-4">Verify with World ID to Generate Wealth</Button>}
                   </IDKitWidget>
