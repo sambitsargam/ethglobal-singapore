@@ -14,9 +14,10 @@ export const modules = {
 
 // insertaion of the allowd wallets
 const wallets = [
-  "",
-  "",
-  "",
+  "B62qmqZPn9N2Jb15Pog9actmEbuTyKAKNmycJYNAUGHxDH8KbeuC5mr",
+  "B62qmqZPn9N2Jb15Pog9actmEbuTyKAKNmycJYNAUGHxDH8KbeuC5mr",
+  "B62qmqZPn9N2Jb15Pog9actmEbuTyKAKNmycJYNAUGHxDH8KbeuC5mr",
+
 ];
 
 let accounts: Map<string, Account> = new Map<string, Account>(

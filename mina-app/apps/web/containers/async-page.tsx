@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { Button } from "@/components/interfaces/button";
 import { Input } from "@/components/interfaces/input";
@@ -21,15 +21,13 @@ import {
 } from "@/components/interfaces/form";
 
 import Link from "next/link";
-import { useRouter, usePathname, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { toast } from "@/components/interfaces/use-toast";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 
 import { useAnalysis, useAnalysisStore } from "@/lib/stores/analysis";
-
-import { buttonVariants } from "@/components/interfaces/button";
 
 // Schema for asset form input
 const FormSchema = z.object({
@@ -64,17 +62,47 @@ const Search = ({
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "Submitted asset details:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    onAnalysis();
-    onSave(data.asset);
+  async function fetchAssetData() {
+    const response = await fetch('https://zkzk-35d2f-default-rtdb.firebaseio.com/data.json');
+    const json = await response.json();
+    const assetTypes = json["-O7HrbRE0y1ArAitPhrL"].assetData.assetType;
+
+    return assetTypes.reduce((acc: { [x: string]: { polygon: any; ethereum: any; mina: any; other: any; }; }, item: { assetType: string | number; polygon: any; ethereum: any; mina: any; other: any; }) => {
+      acc[item.assetType] = {
+        polygon: item.polygon,
+        ethereum: item.ethereum,
+        mina: item.mina,
+        other: item.other,
+      };
+      return acc;
+    }, {});
+  }
+
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      const assetData = await fetchAssetData();
+      const formattedData = {
+        ...assetData,
+        assetId: data.asset,
+      };
+
+      toast({
+        title: "Submitted asset details:",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(formattedData, null, 2)}</code>
+          </pre>
+        ),
+      });
+
+      onAnalysis();
+      onSave(data.asset);
+    } catch (error) {
+      toast({
+        title: "Error",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -92,7 +120,7 @@ const Search = ({
                     <FormControl>
                       <Input
                         className="w-full"
-                        placeholder="Enter asset contract or symbol"
+                        placeholder="Enter the id"
                         {...field}
                       />
                     </FormControl>
@@ -107,7 +135,7 @@ const Search = ({
           </div>
           <div>
             <FormDescription>
-              Only valid asset contracts or symbols are supported.
+              Only valid id are supported.
             </FormDescription>
           </div>
         </form>
