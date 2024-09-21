@@ -32,6 +32,5 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new NodePolyfillPlugin(),
-    require('postcss-flexbugs-fixes'),
   ],
 };
