@@ -20,7 +20,7 @@ export interface ChartData {
   assetType: string; // For example: "Stable Coin", "NFT", "Token"
   polygon: number; // Value for Polygon network
   ethereum: number; // Value for Ethereum network
-  solana: number; // Value for Solana network
+  mina: number; // Value for mina network
   other: number;   // Value for any other network
 }
 
@@ -36,7 +36,7 @@ const AssetBarChart = ({ data }: { data: ChartData[] }) => {
         <Legend />
         <Bar dataKey="polygon" fill="#8884d8" />
         <Bar dataKey="ethereum" fill="#82ca9d" />
-        <Bar dataKey="solana" fill="#ffc658" />
+        <Bar dataKey="mina" fill="#ffc658" />
         <Bar dataKey="other" fill="#ff7300" />
       </BarChart>
     </ResponsiveContainer>
@@ -73,7 +73,7 @@ const renderCustomizedLabel = ({
 const AssetPieChart = ({ data }: { data: ChartData[] }) => {
   const pieData = data.map((item) => ({
     name: item.assetType,
-    value: item.polygon + item.ethereum + item.solana + item.other,
+    value: item.polygon + item.ethereum + item.mina + item.other,
   }));
 
   return (

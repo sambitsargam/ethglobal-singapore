@@ -1,81 +1,211 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Label, Input, Button } from '@windmill/react-ui';
+import React, { useState, useEffect } from 'react';
+import { Button, Label } from '@windmill/react-ui';
+import { IDKitWidget } from '@worldcoin/idkit';
+
+// MetaMask connection handler
+const connectMetaMask = async () => {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      return accounts[0];
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+      return null;
+    }
+  } else {
+    alert('MetaMask is not installed. Please install it to connect.');
+    return null;
+  }
+};
+
+// Mina (Auro Wallet) connection handler
+const connectMinaWallet = async () => {
+  if (typeof window.mina !== 'undefined') {
+    try {
+      const accounts = await window.mina.requestAccounts();
+      if (Array.isArray(accounts)) {
+        return accounts[0];
+      }
+      return null;
+    } catch (error) {
+      console.error('Error connecting to Mina (Auro Wallet):', error);
+      return null;
+    }
+  } else {
+    alert('Auro Wallet is not installed');
+    return null;
+  }
+};
+
+// Function to generate a random 10-digit ID
+const generateId = () => {
+  return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+};
+
+// Function to save user ID and asset data to Firebase
+const saveToFirebase = async (data) => {
+  const url = 'https://zkzk-35d2f-default-rtdb.firebaseio.com/data.json';
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to save data');
+    }
+    console.log('Data saved successfully:', await response.json());
+  } catch (error) {
+    console.error('Error saving data to Firebase:', error);
+  }
+};
 
 function Home() {
-  const [useArconnect, setUseArconnect] = useState(false);
-  const [userAddress, setUserAddress] = useState('');
-  const [email, setEmail] = useState('');
+  const [metaMaskAddress, setMetaMaskAddress] = useState('');
+  const [minaAddress, setMinaAddress] = useState('');
+  const [metaMaskConnected, setMetaMaskConnected] = useState(false);
+  const [minaConnected, setMinaConnected] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [verified, setVerified] = useState(false);
 
+  // Handle MetaMask connection
+  const handleMetaMaskConnect = async () => {
+    const address = await connectMetaMask();
+    if (address) {
+      setMetaMaskAddress(address);
+      setMetaMaskConnected(true);
+    }
+  };
+
+  // Handle Mina (Auro Wallet) connection
+  const handleMinaConnect = async () => {
+    const address = await connectMinaWallet();
+    if (address) {
+      setMinaAddress(address);
+      setMinaConnected(true);
+    }
+  };
+
+  // Watch for account changes in Mina Wallet
   useEffect(() => {
-    // Define an async function to obtain the user's wallet address
-    const getUserAddress = async () => {
-      try {
-        // Make sure this code is executed inside an async function or a function that handles the promise.
-        const userAddress = await window.arweaveWallet.getActiveAddress();
-        console.log("Your wallet address is", userAddress);
-        setUserAddress(userAddress || '');
-      } catch (error) {
-        console.error("Error while obtaining the user's wallet address:", error);
-        setUserAddress('');
-      }
+    if (window.mina) {
+      window.mina.on('accountsChanged', (accounts) => {
+        if (accounts.length > 0) {
+          setMinaAddress(accounts[0]);
+        }
+      });
+    }
+  }, []);
+
+  const bothWalletsConnected = metaMaskConnected && minaConnected;
+
+  // Handle the "Proceed" button click
+  const handleProceed = () => {
+    const id = generateId();
+    const assetData = {
+      assetType: [
+        {
+          assetType: "Stable Coin",
+          polygon: 5000,
+          ethereum: 3000,
+          mina: 2000,
+          other: 1000,
+        },
+        {
+          assetType: "NFT",
+          polygon: 10,
+          ethereum: 5,
+          mina: 2,
+          other: 1,
+        },
+        {
+          assetType: "Token",
+          polygon: 15000,
+          ethereum: 10000,
+          mina: 5000,
+          other: 2000,
+        },
+      ],
     };
 
-    // Call the async function to fetch wallet address if useArconnect is true
-    if (useArconnect) {
-      getUserAddress();
-    } else {
-      setUserAddress('');
-    }
-  }, [useArconnect]);
+    const dataToSave = {
+      id,
+      assetData,
+    };
 
-  const handleUseArconnect = () => {
-    setUseArconnect(true);
+    saveToFirebase(dataToSave);
+    setUserId(id);  // Set the user ID
+    setIsSubmitted(true); // Mark the form as submitted
+  };
+
+  // Handle World ID verification success
+  const enableButton = () => {
+    setVerified(true); // Enable the proceed button
   };
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="flex flex-col overflow-y-auto md:flex-row">
-          <div className="h-32 md:h-auto md:w-1/2">
-            {/* Your image elements here */}
-          </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Subscribe to Notification
+                Connect Your Wallets
               </h1>
 
-              {useArconnect ? (
-                <>
-                  <Label>
-                    <span>Your Wallet Address</span>
-                    <Input className="mt-1" value={userAddress} readOnly />
-                  </Label>
-                  <Label>
-                    <span>Email</span>
-                    <Input className="mt-1" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="sambit@gmail.com" />
-                  </Label>
-                </>
-              ) : (
-                <>
-                  <Label>
-                    <span>Your Wallet Address</span>
-                    <Input className="mt-1" value={userAddress} onChange={(e) => setUserAddress(e.target.value)} placeholder="Enter your wallet address manually" />
-                  </Label>
-                </>
-              )}
-
-              {!useArconnect && (
-                <Button onClick={handleUseArconnect} block className="mt-4">
-                  Use Arconnect
+              {!metaMaskConnected && (
+                <Button onClick={handleMetaMaskConnect} block className="mt-4">
+                  Connect MetaMask
                 </Button>
               )}
 
-              {useArconnect && (
-                <Button tag={Link} to="/login" block className="mt-4">
-                  Subscribe
+              {!minaConnected && (
+                <Button onClick={handleMinaConnect} block className="mt-4">
+                  Connect Mina Wallet
                 </Button>
+              )}
+
+              {bothWalletsConnected && (
+                <>
+                  <Label className="mt-4">
+                    <span>MetaMask Wallet Address: {metaMaskAddress}</span>
+                  </Label>
+                  <Label className="mt-4">
+                    <span>Mina Wallet Address: {minaAddress}</span>
+                  </Label>
+
+                  <IDKitWidget
+                    app_id="app_staging_add54a8fabc8467293ab274bfee34aa4"
+                    action="vote_1"
+                    signal="user_value"
+                    onSuccess={enableButton} // Call enableButton on success
+                    credential_types={['orb', 'phone']}
+                    enableTelemetry
+                  >
+                    {({ open }) => <Button onClick={open} className="mt-4">Verify with World ID to Generate Wealth</Button>}
+                  </IDKitWidget>
+
+                  {verified && (
+                    <Button onClick={handleProceed} block className="mt-4">
+                      Submit Analysis Report
+                    </Button>
+                  )}
+                </>
+              )}
+
+              {isSubmitted && (
+                <Label className="mt-4 text-green-500">
+                  User ID: {userId} - Done
+                </Label>
+              )}
+
+              {!bothWalletsConnected && (
+                <Label className="mt-4 text-red-500">
+                  Both wallets must be connected to proceed.
+                </Label>
               )}
             </div>
           </main>

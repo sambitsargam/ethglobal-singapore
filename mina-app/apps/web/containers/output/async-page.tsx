@@ -11,13 +11,13 @@ import { useClientStore } from "@/lib/stores/client";
 const blockchainData = [
   ["Stable Coin", "Polygon", 50],
   ["Stable Coin", "Ethereum", 30],
-  ["Stable Coin", "Solana", 20],
+  ["Stable Coin", "mina", 20],
   ["NFT", "Polygon", 60],
   ["NFT", "Ethereum", 30],
-  ["NFT", "Solana", 10],
+  ["NFT", "mina", 10],
   ["Token", "Polygon", 40],
   ["Token", "Ethereum", 50],
-  ["Token", "Solana", 10],
+  ["Token", "mina", 10],
 ];
 
 // Formatting data to fit the chart's structure
@@ -30,7 +30,7 @@ function formatChartData(assetDistribution: { [assetType: string]: { [network: s
       assetType,
       polygon: networkData.Polygon || 0,
       ethereum: networkData.Ethereum || 0,
-      solana: networkData.Solana || 0,
+      mina: networkData.mina || 0,
       other: networkData.Other || 0,
     };
 
