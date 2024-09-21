@@ -1,0 +1,77 @@
+# Ignore dependencies
+/node_modules
+/yarn.lock
+/pnpm-lock.yaml
+/package-lock.json
+
+# Logs
+/log/*
+!/log/.keep
+*.log
+
+# Temporary files and cache
+/tmp/*
+/*.swp
+/.idea/
+/.vscode/
+/.DS_Store
+
+# dotenv environment variables
+/.env
+/.env.local
+/.env.*.local
+
+# Build output (public compiled assets)
+/public/assets
+/public/packs
+/public/packs-test
+
+# Hotwire and Turbo specific generated files
+/storage
+/coverage/
+/public/turbo-drive-adapter.js
+
+# Sprockets
+/public/assets/
+/public/packs-test/
+/public/packs
+/node_modules/
+
+# Ignore bundler config
+/.bundle
+
+# Ignore compiled extensions.
+/vendor/bundle
+
+# Ignore IDE-specific files
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Sass cache files
+.sass-cache
+
+# Ignore secrets
+config/credentials.yml.enc
+config/master.key
+
+# Ignore sensitive information
+*.pem
+*.key
+
+# Ignore asset-manifest files
+asset-manifest.json
+
+# Ignore Tailwind config
+/tailwind.config.js
+
+# Ignore generated files from Webpack or Vite
+/dist
+/.turbo
+/.cache
+
+# Ignore JetBrains IDE directories
+.idea/
+
+# Ignore MacOS file
+.DS_Store
+

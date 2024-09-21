@@ -84,7 +84,7 @@
     "tailwind:dev": "tailwindcss build src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
     "tailwind:build": "cross-env NODE_ENV=production postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
     "prestart": "npm run tailwind:dev",
-    "start": "react-app-rewired start",
+    "start": "PORT=5000 react-app-rewired start",
     "prebuild": "npm run tailwind:build",
     "build": "react-app-rewired build --openssl-legacy-provider && echo '/* /index.html 200' | cat >build/_redirects",
     "cz": "git-cz",
