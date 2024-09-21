@@ -35,18 +35,18 @@ const benefitOne = {
 };
 
 const benefitTwo = {
-  title: "And even more with ArTrackrHub...",
+  title: "And even more with SecureFi...",
   // desc: "It is secure and unchangeable because of the use of blockchain. indicating that nobody can manipulate your data",
   image: benefitOneImg,
   bullets: [
     {
       title: "NFT Token",
-      desc: "Mint NFT directly from files saved on ArTrackrHub ",
+      desc: "Mint NFT directly from files saved on SecureFi ",
       icon: <DevicePhoneMobileIcon />,
     },
     {
       title: "Chat",
-      desc: "Send  messages with anyone you want using ArTrackrHub",
+      desc: "Send  messages with anyone you want using SecureFi",
       icon: <AdjustmentsVerticalIcon />,
     },
     {

@@ -22,13 +22,13 @@ export default function Footer() {
                     className="w-8"
                   />
                 </span>
-                <span>ArTrackrHub</span>
+                <span>SecureFi</span>
               </a>
               {/* </Link> */}
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              ArTrackrHub a decentralise storage online Platforms with NFT and
+              SecureFi a decentralise storage online Platforms with NFT and
               Chatting capabilities. Users can store their data on IPFS or Web3
               Storage. Users can access files directly through web browser
               without using any third party software.

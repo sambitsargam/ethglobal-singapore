@@ -18,13 +18,13 @@ export default function Home() {
         <Navbar />
         <Hero />
         <SectionTitle
-          pretitle="ArTrackrHub Benefits"
-          title=" Why should you use ArTrackrHub"
+          pretitle="SecureFi Benefits"
+          title=" Why should you use SecureFi"
         ></SectionTitle>
         <Benefits data={benefitOne} />
         <Benefits imgPos="right" data={benefitTwo} />
-        <SectionTitle pretitle="about" title="Learn more about ArTrackrHub">
-          ArTrackrHub a decentralise storage online Platforms with NFT and
+        <SectionTitle pretitle="about" title="Learn more about SecureFi">
+          SecureFi a decentralise storage online Platforms with NFT and
           Chatting capabilities. Users can store their data on IPFS or Web3
           Storage. Users can access files directly through web browser without
           using any third party software.

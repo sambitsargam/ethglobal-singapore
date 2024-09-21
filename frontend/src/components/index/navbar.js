@@ -25,7 +25,7 @@ export default function Navbar() {
                       className="w-8"
                     />
                   </span>
-                  <span>ArTrackrHub</span>
+                  <span>SecureFi</span>
                 </a>
                 {/* </Link> */}
 

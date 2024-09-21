@@ -22,7 +22,7 @@ function SidebarContent() {
         href="#"
       >
         <img src={Logo} className="h-8 pr-3" />
-        ArTrackrHub
+        SecureFi
         {/* <button className="bg-green-500 text-white text-lg px-4 rounded-full ml-4 py-1 mt-2">
           Disconnect
         </button> */}

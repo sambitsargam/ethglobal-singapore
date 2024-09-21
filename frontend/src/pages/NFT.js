@@ -190,7 +190,7 @@ export default function NFT() {
           />
         </Label>
       </Modals>
-      <PageTitle>ArTrackrHub NFT Marketplace</PageTitle>
+      <PageTitle>SecureFi NFT Marketplace</PageTitle>
       <div className="w-max">
         <Button
           className="bg-blue-500 mb-3"
