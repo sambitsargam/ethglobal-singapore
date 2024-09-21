@@ -1,11 +1,11 @@
 import { lazy } from "react";
 
 // use lazy for better code splitting, a.k.a. load faster
-const Storage = lazy(() => import("../pages/Dashboard"));
+const Portfolio = lazy(() => import("../pages/Dashboard"));
 const Favorite = lazy(() => import("../pages/Favorite"));
 const Setting = lazy(() => import("../pages/Setting"));
 const Sttorage = lazy(() => import("../pages/Storage"));
-const Community = lazy(() => import("../pages/Community"));
+const Zkkk = lazy(() => import("../pages/Community"));
 const Chats = lazy(() => import("../pages/Chats"));
 const NFT = lazy(() => import("../pages/NFT"));
 const Assets = lazy(() => import("../pages/Assets"));
@@ -35,12 +35,12 @@ const routes = [
     component: Setting,
   },
   {
-    path: "/storage",
-    component: Storage,
+    path: "/portfolio",
+    component: Portfolio,
   },
   {
-    path: "/community",
-    component: Community,
+    path: "/zk-lending",
+    component: Zkkk,
   },
   {
     path: "/chat",

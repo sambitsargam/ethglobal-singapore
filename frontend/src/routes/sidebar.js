@@ -28,14 +28,14 @@ const routes = [
   // },
 
   {
-    path: "/app/storage",
+    path: "/app/portfolio",
     icon: <ServerStackIcon className="h-6" />,
-    name: " Storage",
+    name: "Portfolio",
   },
   {
-    path: "/app/community",
+    path: "/app/zk-lending",
     icon: <UserGroupIcon className="h-6" />,
-    name: "Community",
+    name: "Zk Lend Borrow",
   },
   {
     path: "/app/chat",
