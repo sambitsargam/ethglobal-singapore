@@ -11,24 +11,24 @@ import benefitOneImg from "../../public/img/benefit-one.png";
 import benefitTwoImg from "../../public/img/benefit-two.png";
 import fdfs from "../../";
 const benefitOne = {
-  title: "Storage",
+  title: "Privacy",
   // desc: "ou have the freedom to choose whether to store your data on IPFS or Web3 storage.",
 
   image: benefitTwoImg,
   bullets: [
     {
-      title: "File manager",
-      desc: "Directly browse your files from anywhere in the world",
+      title: "Secure Data Sharing",
+      desc: "Easily share your encrypted wallet portfolio with financial institutions for loan approvals, job applications, or visa processes, all with full control over who can access your data.",
       icon: <FaceSmileIcon />,
     },
     {
-      title: "Sharing",
-      desc: "Easily share files with friends and family.",
+      title: "Trustless Transactions",
+      desc: "Perform secure transactions and share data without relying on centralized third parties, ensuring your privacy is never compromised.",
       icon: <ChartBarSquareIcon />,
     },
     {
-      title: "Mobile compatible",
-      desc: "Access your files anytime and anywhere",
+      title: "Privacy-Preserving Lending",
+      desc: "Borrow USDC and MINA while keeping your financial data completely private using zero-knowledge proofs.",
       icon: <CursorArrowRippleIcon />,
     },
   ],
@@ -40,18 +40,18 @@ const benefitTwo = {
   image: benefitOneImg,
   bullets: [
     {
-      title: "NFT Token",
-      desc: "Mint NFT directly from files saved on SecureFi ",
+      title: "Encrypted Financial Data",
+      desc: "Your financial details are securely encrypted, ensuring that only the authorized party can access the shared data.",
       icon: <DevicePhoneMobileIcon />,
     },
     {
-      title: "Chat",
-      desc: "Send  messages with anyone you want using SecureFi",
+      title: "ZK-Based Sharing",
+      desc: "Share sensitive financial data using Mina Protocol with full privacy and security, verified through zero-knowledge proofs.",
       icon: <AdjustmentsVerticalIcon />,
     },
     {
-      title: "Hybrid Storage ",
-      desc: "You can host both IPFS and Web3storage servers for free. ",
+      title: "USDC & MINA Lending",
+      desc: "Access fast and secure lending using USDC and MINA with complete confidentiality.",
       icon: <SunIcon />,
     },
   ],

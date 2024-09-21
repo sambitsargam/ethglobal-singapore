@@ -28,33 +28,22 @@ export default function Footer() {
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              SecureFi a decentralise storage online Platforms with NFT and
-              Chatting capabilities. Users can store their data on IPFS or Web3
-              Storage. Users can access files directly through web browser
-              without using any third party software.
+              SecureFi is a decentralized DeFi platform focused on providing secure and private data sharing for lending. Powered by Mina Protocol and Protokit, we offer privacy-first lending in USDC and MINA, allowing users to share financial data with institutions in a fully encrypted and trusted environment.
+
+
               <br></br>
               <br></br>
               <p>
-                It has been implemented in order to reduce the dependency on
-                centralized services like Dropbox and Google Drive where users
-                are dependent on a single point of failure. It will give you
-                complete control over your data, right from its inception.
+                Our platform removes the need for traditional centralized data-sharing methods, ensuring complete control over your data with zero-knowledge proofs (ZKPs). Users can share their wallet portfolios for loan approvals, visa applications, or job screenings without compromising privacy.
+
+
               </p>
             </div>
           </div>
 
           <div>
             <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {navigation.map((item, index) => (
-                // <Link key={index} href="/">
-                <a
-                  href="/app/dashboard"
-                  className="w-full cursor-pointer px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
-                >
-                  {item}
-                </a>
-                // </Link>
-              ))}
+         
             </div>
           </div>
           {/* <div>
