@@ -1,1 +1,1 @@
-export * from "./environments/client.config";
+export * from "./client.config";

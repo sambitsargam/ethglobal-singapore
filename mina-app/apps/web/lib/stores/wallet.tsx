@@ -1,4 +1,4 @@
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/interfaces/use-toast";
 import { PendingTransaction, UnsignedTransaction } from "@proto-kit/sequencer";
 import { MethodIdResolver } from "@proto-kit/module";
 import { useCallback, useEffect, useMemo } from "react";
@@ -61,7 +61,7 @@ export const useWalletStore = create<WalletState, [["zustand/immer", never]]>(
     pendingTransactions: [] as PendingTransaction[],
     addPendingTransaction(pendingTransaction) {
       set((state) => {
-        // @ts-expect-error
+        // @ts-ignore
         state.pendingTransactions.push(pendingTransaction);
       });
     },
@@ -149,7 +149,7 @@ export const useNotifyTransactions = () => {
             isMessage: false,
             sender: PublicKey.fromBase58(tx.sender),
             argsFields: tx.argsFields.map((arg) => Field(arg)),
-            auxiliaryData: [],
+            argsJSON: tx.argsJSON,
             signature: Signature.fromJSON({
               r: tx.signature.r,
               s: tx.signature.s,

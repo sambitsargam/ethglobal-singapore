@@ -51,14 +51,7 @@ export const useChainStore = create<ChainState, [["zustand/immer", never]]>(
         state.loading = true;
       });
 
-      const graphql = process.env.NEXT_PUBLIC_PROTOKIT_GRAPHQL_URL;
-      if (graphql === undefined) {
-        throw new Error(
-          "Environment variable NEXT_PUBLIC_PROTOKIT_GRAPHQL_URL not set, can't execute graphql requests",
-        );
-      }
-
-      const response = await fetch(graphql, {
+      const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +63,7 @@ export const useChainStore = create<ChainState, [["zustand/immer", never]]>(
                 txs {
                   tx {
                     argsFields
-                    auxiliaryData
+                    argsJSON
                     methodId
                     nonce
                     sender

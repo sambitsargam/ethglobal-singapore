@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "predev": "cd ../../packages/chain && pnpm build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -28,13 +27,14 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
-    "reflect-metadata": "^0.1.13",
+    "recharts": "^2.12.3",
+    "reflect-metadata": "^0.2.1",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "truncate-middle": "^1.0.6",
+    "uuid": "*",
     "zod": "^3.22.4",
-    "zustand": "^4.4.6",
-    "o1js": "1.6.0"
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -48,15 +48,14 @@
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5"
   },
   "peerDependencies": {
-    "@proto-kit/common": "*",
-    "@proto-kit/protocol": "*",
-    "@proto-kit/module": "*",
-    "@proto-kit/sdk": "*",
-    "@proto-kit/sequencer": "*",
-    "@proto-kit/library": "*",
+    "@proto-kit/library": "0.1.1-develop.651",
+    "@proto-kit/module": "0.1.1-develop.651",
+    "@proto-kit/sdk": "0.1.1-develop.651",
+    "@proto-kit/sequencer": "0.1.1-develop.651",
+    "o1js": "0.13.1",
     "tsyringe": "^4.7.0"
   }
 }

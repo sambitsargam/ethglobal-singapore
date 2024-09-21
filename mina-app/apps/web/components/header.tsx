@@ -1,11 +1,13 @@
-import { Button } from "@/components/ui/button";
-import protokit from "@/public/protokit-zinc.svg";
+import { Button } from "@/components/interfaces/button";
 import Image from "next/image";
 // @ts-ignore
 import truncateMiddle from "truncate-middle";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/interfaces/skeleton";
 import { Chain } from "./chain";
-import { Separator } from "./ui/separator";
+import { Separator } from "./interfaces/separator";
+import logo from "@/public/logo.png";
+
+import Link from "next/link";
 
 export interface HeaderProps {
   loading: boolean;
@@ -28,10 +30,17 @@ export default function Header({
     <div className="flex items-center justify-between border-b p-2 shadow-sm">
       <div className="container flex">
         <div className="flex basis-6/12 items-center justify-start">
-          <Image className="h-8 w-8" src={protokit} alt={"Protokit logo"} />
+          <Link href="/">
+            <h1 className="inline-block text-xl font-semibold">AB</h1>
+          </Link>
           <Separator className="mx-4 h-8" orientation={"vertical"} />
-          <div className="flex grow">
+          <div className="flex basis-12">
             <Chain height={blockHeight} />
+          </div>
+          <div className="flex grow">
+            <Link href="/drip" className="rounded px-4 py-2">
+              Faucet
+            </Link>
           </div>
         </div>
         <div className="flex basis-6/12 flex-row items-center justify-end">

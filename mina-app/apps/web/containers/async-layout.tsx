@@ -1,5 +1,6 @@
 import Header from "@/components/header";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/interfaces/toaster";
+import { useObserveAnalysis } from "@/lib/stores/analysis";
 import { useBalancesStore, useObserveBalance } from "@/lib/stores/balances";
 import { useChainStore, usePollBlockHeight } from "@/lib/stores/chain";
 import { useClientStore } from "@/lib/stores/client";
@@ -14,6 +15,7 @@ export default function AsyncLayout({ children }: { children: ReactNode }) {
 
   usePollBlockHeight();
   useObserveBalance();
+  useObserveAnalysis();
   useNotifyTransactions();
 
   useEffect(() => {
